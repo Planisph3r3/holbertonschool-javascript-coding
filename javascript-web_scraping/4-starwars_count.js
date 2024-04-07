@@ -18,9 +18,10 @@ request(promptArg, (error, response, body) => {
   function characterCount (objJson) {
     let realcharCount = 0;
     const filmCount = objJson.count;
+    const characterId = '18';
     for (let idx = 0; idx < filmCount; idx++) {
       for (const item of objJson.results[idx].characters) {
-        if (item === 'https://swapi-api.hbtn.io/api/people/18/') {
+        if (item === `https://swapi-api.hbtn.io/api/people/${characterId}/`) {
           realcharCount += 1;
         }
       }
