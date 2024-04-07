@@ -1,29 +1,27 @@
 #!/usr/bin/node
 
 const request = require('request');
+const fs = require('fs');
 
-const promptArg = process.argv[2];
+const url = process.argv[2];
+const filePath = process.argv[3];
 
-request(promptArg, (error, response, body) => {
+request(url, (error, response, body) => {
   if (error) {
-    console.log('Error on request');
+    console.error('Error on request:', error);
     return;
   }
+
   if (response.statusCode !== 200) {
-    console.log(`Failed to retreive data. code: ${response.statusCode}`);
+    console.error(`Failed to retrieve data. Code: ${response.statusCode}`);
     return;
   }
-  writeFile(body);
+
+  writeFile(filePath, body);
 });
 
-function writeFile (body) {
-  const fs = require('fs');
-
-  const filePath = process.argv[3];
-
-  const dataToWrite = body;
-
-  fs.writeFile(filePath, dataToWrite, 'utf8', (err) => {
+function writeFile (filePath, body) {
+  fs.writeFile(filePath, body, 'utf8', (err) => {
     if (err) {
       console.error('Error writing file:', err);
       return;
