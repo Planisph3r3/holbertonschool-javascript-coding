@@ -26,6 +26,5 @@ function writeFile (filePath, body) {
       console.error('Error writing file:', err);
       return;
     }
-    console.log('File has been written.');
   });
 }
