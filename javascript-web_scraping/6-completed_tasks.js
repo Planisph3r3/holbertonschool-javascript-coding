@@ -20,6 +20,10 @@ request(apiUrl, (error, response, body) => {
   let idRaiser = 1;
 
   for (const idx of objJson) {
+    if (!idx.userId) {
+      console.log(objStore);
+      return;
+    }
     if (idx.completed === true && idx.userId === idRaiser) {
       todosCounter++;
     } else if (idx.userId !== idRaiser) {
