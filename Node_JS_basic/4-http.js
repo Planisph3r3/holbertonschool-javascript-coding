@@ -2,11 +2,16 @@
 
 const http = require('http');
 
-const app = http.createServer((_, response) => {
-  response.setHeader('Content-Type', 'text/plain');
+const handleRequest = (_, response) => {
   response.statusCode = 200;
+  response.setHeader('Content-Type', 'text/plain');
   response.end('Hello Holberton School!');
+};
+
+const app = http.createServer(handleRequest);
+const port = 1245;
+app.listen(port, () => {
+
 });
 
-app.listen(1245, () => {
-});
+module.exports = app;
