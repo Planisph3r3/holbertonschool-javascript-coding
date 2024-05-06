@@ -5,12 +5,11 @@ const countStudents = require('./3-read_file_async');
 
 const handleRequest = ((request, response) => {
   response.setHeader('Content-Type', 'text/plain');
-  const { url, method } = request;
 
-  if (method === 'GET' && url === '/') {
+  if (request.url === '/') {
     response.statusCode = 200;
     response.end('Hello Holberton School!');
-  } else if (method === 'GET' && url === '/students') {
+  } else if (request.url === '/students') {
     countStudents('database.csv')
       .then((loggedContent) => {
         response.statusCode = 200;
@@ -31,3 +30,5 @@ const port = 1245;
 app.listen(port, () => {
 
 });
+
+module.exports = app;
