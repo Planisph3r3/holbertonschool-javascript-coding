@@ -10,7 +10,8 @@ const handleRequest = ((request, response) => {
     response.statusCode = 200;
     response.end('Hello Holberton School!');
   } else if (request.url === '/students') {
-    countStudents('database.csv')
+    const inputDatabase = process.argv[2] !== undefined ? process.argv[2] : '';
+    countStudents(inputDatabase)
       .then((loggedContent) => {
         response.statusCode = 200;
         response.end(`This is the list of our students\n${loggedContent}`);
