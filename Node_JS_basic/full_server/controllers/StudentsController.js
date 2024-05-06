@@ -35,13 +35,13 @@ export default class StudentsController {
                     const numberOfStudents = csStudents.length;
                     const listOfFirstNames = csStudents.join(', ');
                     const formattedString = `Number of students in CS: ${numberOfStudents}. List: ${listOfFirstNames}`;
-                    response.status(200).send(`This is the list of our students\n${formattedString}`);
+                    response.status(200).send(`${formattedString}`);
                 } else if (major === 'SWE') {
                     const sweStudents = data['SWE'];
                     const numberOfStudents = sweStudents.length;
                     const listOfFirstNames = sweStudents.join(', ');
                     const formattedString = `Number of students in SWE: ${numberOfStudents}. List: ${listOfFirstNames}`;
-                    response.status(200).send(`This is the list of our students\n${formattedString}`);
+                    response.status(200).send(`${formattedString}`);
     }})
             .catch(error => {
                 console.error(error);
