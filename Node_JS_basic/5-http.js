@@ -4,13 +4,13 @@ const http = require('http');
 const countStudents = require('./3-read_file_async');
 
 const handleRequest = ((request, response) => {
+  response.setHeader('Content-Type', 'text/plain');
   const { url, method } = request;
 
   if (method === 'GET' && url === '/') {
-    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.statusCode = 200;
     response.end('Hello Holberton School!');
   } else if (method === 'GET' && url === '/students') {
-    response.writeHead(200, { 'Content-Type': 'text/plain' });
     countStudents('database.csv')
       .then((loggedContent) => {
         response.statusCode = 200;
