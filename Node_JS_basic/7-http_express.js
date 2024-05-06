@@ -9,7 +9,8 @@ app.get('/', (_, res) => {
 });
 
 app.get('/students', (_, res) => {
-  countStudents('database.csv')
+  const inputDatabase = process.argv[2] !== undefined ? process.argv[2] : '';
+  countStudents(inputDatabase)
     .then((loggedContent) => {
       res.send(`This is the list of our students\n${loggedContent}`);
     })
@@ -22,3 +23,5 @@ const PORT = 1245;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = app;
