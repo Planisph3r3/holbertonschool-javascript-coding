@@ -15,7 +15,7 @@ app.get('/students', (_, res) => {
       res.send(`This is the list of our students\n${loggedContent}`);
     })
     .catch((error) => {
-      res.send(error);
+      res.send(`This is the list of our students\n${error.message}`);
     });
 });
 
