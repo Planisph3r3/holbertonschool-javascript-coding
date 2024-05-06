@@ -17,7 +17,7 @@ const handleRequest = ((request, response) => {
       })
       .catch((error) => {
         response.statusCode = 500;
-        response.end(error);
+        response.end(`This is the list of our students\n${error.message}`);
       });
   } else {
     response.statusCode = 404;
