@@ -3,7 +3,7 @@
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const app = http.createServer((request, response) => {
+const handleRequest = ((request, response) => {
   const { url, method } = request;
 
   if (method === 'GET' && url === '/') {
@@ -14,18 +14,20 @@ const app = http.createServer((request, response) => {
     countStudents('database.csv')
       .then((loggedContent) => {
         response.statusCode = 200;
-        response.end('This is the list of our students\n' + `${loggedContent}`);
+        response.end(`This is the list of our students\n${loggedContent}`);
       })
       .catch((error) => {
         response.statusCode = 500;
         response.end(error);
       });
   } else {
-    response.writeHead(404, { 'Content-Type': 'text/plain' });
+    response.statusCode = 404;
     response.end('404 Not Found\n');
   }
 });
 
-app.listen(1245, () => {
+const app = http.createServer(handleRequest);
+const port = 1245;
+app.listen(port, () => {
 
 });
